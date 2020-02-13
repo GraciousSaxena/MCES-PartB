@@ -1,0 +1,20 @@
+#include<lpc214x.h>
+void delay_ms(int t){
+	int x;
+		for(x=0; x<t*260; x++);
+}
+int main(){
+	IODIR0 = 1U<<31;
+	IOCLR0 = 1U<<31;
+	while(1){
+		if(!(IOPIN0 & 1<<14)){
+//			delay_ms(150);
+			IOSET0 = 1U<<31;
+		}		
+		if(!(IOPIN0 & 1<<15)){
+			IOCLR0 = 1U<<31;
+//			delay_ms(150);
+		}
+	}
+	while(1);
+}
